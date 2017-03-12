@@ -29,14 +29,11 @@ class RecipesController < ApplicationController
   end
 
   def edit
+    @recipe = Recipe.find_by(id: params[:id])
     render 'edit.html.erb'
   end
 
   def update
-    # can only update the third one
-    # ruins everything if you don't fill in all the fields
-    # not showing changes after update
-    # does not show default values
     @recipe = Recipe.find_by(id: params['id'])
     @recipe.update(
       title: params['form_title'],
@@ -47,5 +44,11 @@ class RecipesController < ApplicationController
       prep_time: params['form_prep_time']
       )
     render 'update.html.erb'
+  end
+
+  def destroy
+    @recipe = Recipe.find(params[:id])
+    @recipe.destroy
+    render 'destroy.html.erb'
   end
 end

@@ -1,34 +1,41 @@
 I will show an edit form
 
 
-<%= form_tag "/recipes/3", method: :patch do%>
+<%= form_tag "/recipes/#{@recipe.id}", method: :patch do%>
   <div>
   <label name="form_title">Title:</label>
-    <input type="text" name="form_title">
+    <input type="text" name="form_title" value="<%= @recipe.title %>">
   </div>
 
   <div>
   <label name="form_chef">Chef:</label>
-    <input type="text" name="form_chef">
+    <input type="text" name="form_chef" value="<%= @recipe.chef %>">
   </div>
 
   <div>
   <label name="form_ingredients">Ingredients:</label>
-    <input type="text" name="form_ingredients">
+    <input type="text" name="form_ingredients" value="<%= @recipe.ingredients %>">
   </div>
 
   <div>
   <label name="form_directions">Directions:</label>
-    <input type="text" name="form_directions">
+    <input type="text" name="form_directions" value="<%= @recipe.directions %>">
   </div>
 
   <div>
   <label name="form_image">Image:</label>
-    <input type="text" name="form_image">
+    <input type="text" name="form_image" value="<%= @recipe.image %>">
   </div>
   <div>
   <label name="form_prep_time">Prep Time:</label>
-    <input type="text" name="form_prep_time">
+    <input type="text" name="form_prep_time" value="<%= @recipe.prep_time %>">
   </div>
   <input type="submit" value="Click me!">
+<% end %>
+
+
+
+
+<%= form_tag "/recipes/#{@recipe.id}", method: :delete do %>
+  <input type="submit" value="Are you sure you want to delete this?">
 <% end %>
