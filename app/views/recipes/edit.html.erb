@@ -1,6 +1,7 @@
-<h1>I will show a form in the future</h1>
+I will show an edit form
 
-<%= form_tag "/recipes", method: :post do%>
+
+<%= form_tag "/recipes/3", method: :patch do%>
   <div>
   <label name="form_title">Title:</label>
     <input type="text" name="form_title">

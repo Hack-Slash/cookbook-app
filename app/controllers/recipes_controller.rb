@@ -27,4 +27,25 @@ class RecipesController < ApplicationController
     # show them a view with the info of the recipe they just created
     render 'create.html.erb'
   end
+
+  def edit
+    render 'edit.html.erb'
+  end
+
+  def update
+    # can only update the third one
+    # ruins everything if you don't fill in all the fields
+    # not showing changes after update
+    # does not show default values
+    @recipe = Recipe.find_by(id: params['id'])
+    @recipe.update(
+      title: params['form_title'],
+      chef: params['form_chef'],
+      ingredients: params['form_ingredients'],
+      directions: params['form_directions'],
+      image: params['form_image'],
+      prep_time: params['form_prep_time']
+      )
+    render 'update.html.erb'
+  end
 end
