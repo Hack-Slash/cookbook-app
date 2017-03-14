@@ -24,8 +24,10 @@ class RecipesController < ApplicationController
       prep_time: params['form_prep_time']
       )
     @recipe.save
+    flash[:success] = "You just created a new recipe"
     # show them a view with the info of the recipe they just created
-    render 'create.html.erb'
+    # render just shows you the html from that view
+    redirect_to "/recipes/#{@recipe.id}"
   end
 
   def edit
@@ -43,12 +45,14 @@ class RecipesController < ApplicationController
       image: params['form_image'],
       prep_time: params['form_prep_time']
       )
-    render 'update.html.erb'
+    flash[:info] = "You just changed some attributes of the recipe"
+    redirect_to "/recipes/#{@recipe.id}"
   end
 
   def destroy
     @recipe = Recipe.find(params[:id])
     @recipe.destroy
-    render 'destroy.html.erb'
+    flash[:danger] = "You deleted a thing"
+    redirect_to "/recipes"
   end
 end
