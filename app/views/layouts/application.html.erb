@@ -43,7 +43,12 @@
         <button type="submit" class="btn btn-default">Submit</button>
       </form>
       <ul class="nav navbar-nav navbar-right">
-        <li><a href="#">Link</a></li>
+      <% if session[:user_id] %>
+          <li><a href="/logout">Logout</a></li>
+      <% else %>
+          <li><a href="/login">Login</a></li>
+          <li><a href="/signup">Signup</a></li>
+      <% end %>
         <li class="dropdown">
           <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true" aria-expanded="false">Dropdown <span class="caret"></span></a>
           <ul class="dropdown-menu">
@@ -58,6 +63,9 @@
     </div><!-- /.navbar-collapse -->
   </div><!-- /.container-fluid -->
 </nav>
+<% if session[:user_id] %>
+  Welcome, <%= current_user.username %>
+<% end %>
 <div class="container-fluid">
     <% flash.each do |name_of_class, message| %>
       <div class="alert alert-<%= name_of_class %>" role="alert">

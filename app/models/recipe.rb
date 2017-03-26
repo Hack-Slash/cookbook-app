@@ -1,4 +1,8 @@
 class Recipe < ApplicationRecord
+  belongs_to :user
+  has_many :categorized_recipes
+  has_many :categories, through: :categorized_recipes
+
   def directions_list
     return directions.split(", ")
   end

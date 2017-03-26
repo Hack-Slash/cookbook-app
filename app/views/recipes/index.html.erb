@@ -1,5 +1,5 @@
 <h2>Here are all the recipes</h2>
-
+<%= session[:count] %>
 <% @recipes.each_slice(3) do |three_recipes| %>
   <div class="row">
     <% three_recipes.each do |recipe| %>

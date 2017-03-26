@@ -1,5 +1,10 @@
 class RecipesController < ApplicationController
   def index
+    if session[:count] == nil
+      session[:count] = 0
+    end
+    session[:count] += 1
+
     if params[:sort] == 'prep_time'
       @recipes =  Recipe.all.order(:prep_time)
     elsif params[:sort] == 'title'
@@ -27,9 +32,12 @@ class RecipesController < ApplicationController
       ingredients: params['form_ingredients'],
       directions: params['form_directions'],
       image: params['form_image'],
-      prep_time: params['form_prep_time']
-      )
+      prep_time: params['form_prep_time'],
+      user_id: session[:user_id]
+    )
     @recipe.save
+    p '*' * 50
+    p @recipe.errors
     flash[:success] = "You just created a new recipe"
     # show them a view with the info of the recipe they just created
     # render just shows you the html from that view

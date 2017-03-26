@@ -1,0 +1,8 @@
+Login here
+<%= form_tag "/sessions", method: :post do %>
+  <label>Email</label>
+  <p><input type="text" name="email"></p>
+  <label>password</label>
+  <p><input type="password" name="password"></p>
+  <input type="submit" value="Log in">
+<% end %>
