@@ -1,17 +1,18 @@
 class RecipesController < ApplicationController
   def index
-    if session[:count] == nil
-      session[:count] = 0
-    end
-    session[:count] += 1
-
-    if params[:sort] == 'prep_time'
-      @recipes =  Recipe.all.order(:prep_time)
-    elsif params[:sort] == 'title'
-      @recipes =  Recipe.all.order(:title)
+    # if params[:sort] == 'prep_time'
+    #   @recipes =  Recipe.all.order(:prep_time)
+    # elsif params[:sort] == 'title'
+    #   @recipes =  Recipe.all.order(:title)
+    # else
+    #   @recipes = Recipe.all
+    # end
+    if params[:category]
+      @recipes = Category.find_by(name: params[:category]).recipes
     else
       @recipes = Recipe.all
     end
+
     render 'index.html.erb'
   end
 
